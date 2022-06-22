@@ -11,7 +11,7 @@ export default class Bottom extends Component {
         }
     }
     componentDidUpdate() {
-        console.log(this.state.query)
+        // console.log(this.state.query)
     }
 
     render() {

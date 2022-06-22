@@ -7,7 +7,7 @@ export default class Card extends Component {
         super(props)
         this.state = {
             text: "",
-            id
+            id: Number
         }
     }
     componentDidMount() {
@@ -23,7 +23,10 @@ export default class Card extends Component {
                 <Text style={styles.text_style}>{this.state.text}</Text>
                 <TouchableOpacity
                     style={styles.delete}
-                    onPress={() => console.log(this.state.id)}
+                    onPress={() => {
+                        // console.log(this.state.id)
+                        this.props.deleteFunc(this.state.id)
+                    }}
                 >
                     <Ionicons name='trash-outline' size={28} color='black' />
                 </TouchableOpacity>
