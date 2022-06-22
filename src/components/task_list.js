@@ -18,15 +18,27 @@ export default class task_list extends Component {
     }
 
     render() {
+        const setData = (i) => {
+            this.setState({ data: deleteTask(i) })
+            console.log(this.state.data)
+        }
+
         const deleteTask = (index) => {
             let DATA = this.state.data
             let newData = []
-            DATA.map((e) => {
-                e.id != index &&
-                    newData.push(e)
-            })
-            console.log(DATA, "DATA")
-            this.setState({ data: newData })
+
+            if (index === DATA.length - 1) {
+                newData = DATA.pop()
+            }
+            else if (DATA.length > 0) {
+                this.state.data.forEach(e => {
+                    if (e.id != index) newData.push(e)
+                });
+            }
+            else if (DATA.length === 0) {
+                newData = []
+            }
+            return newData
         }
 
         return (
@@ -36,7 +48,10 @@ export default class task_list extends Component {
                 data={this.state.data}
                 renderItem={({ item }) => {
                     // console.log(item, "flatlist")
-                    return <Card text={item.text} cardID={item.id} deleteFunc={deleteTask} />
+                    return (
+                        this.state.data.length != 0 &&
+                        <Card text={item.text} cardID={item.id} deleteFunc={setData} />
+                    )
                 }}
             />
         )

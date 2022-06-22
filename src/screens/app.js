@@ -11,7 +11,7 @@ export default class HomeScreen extends Component {
         this.backgroundImage = this.props.route.params.image
         this.state = {
             text: "",
-            id: Number
+            id: 0
         }
     }
     componentDidMount() { }

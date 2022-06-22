@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import { THEME_COLORS } from '../assets/storage'
 
 export default class Header extends Component {
-    componentDidUpdate() { console.log("header updated") }
+    // componentDidUpdate() { console.log("header updated") }
     render() {
         return (
             // <LinearGradient style={styles.container} colors={THEME_COLORS} >

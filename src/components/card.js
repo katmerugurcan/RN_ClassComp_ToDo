@@ -7,7 +7,7 @@ export default class Card extends Component {
         super(props)
         this.state = {
             text: "",
-            id: Number
+            id: 0
         }
     }
     componentDidMount() {
@@ -24,7 +24,7 @@ export default class Card extends Component {
                 <TouchableOpacity
                     style={styles.delete}
                     onPress={() => {
-                        // console.log(this.state.id)
+                        console.log(this.state.id, "touchID")
                         this.props.deleteFunc(this.state.id)
                     }}
                 >
