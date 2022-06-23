@@ -7,16 +7,20 @@ export default class Card extends Component {
         super(props)
         this.state = {
             text: "",
-            id: 0
+            id: 0,
         }
     }
     componentDidMount() {
         this.setText(this.props.text)
         this.setID(this.props.cardID)
+        this.setDIDs(this.props.dIDs)
         // console.log(this.state, "card")
     }
+    componentDidUpdate() { }
     setText = (text) => { this.setState({ text: text }) }
-    setID = (id) => this.setState({ id: id })
+    setID = (id) => {
+        this.setState({ id: id })
+    }
     render() {
         return (
             <View style={styles.container}>

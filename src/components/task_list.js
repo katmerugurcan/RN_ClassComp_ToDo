@@ -11,7 +11,6 @@ export default class task_list extends Component {
     }
     componentDidMount() { }
     componentDidUpdate() {
-        // console.log(this.state.data, "tasklist")
         this.props.taskData != this.state.data[this.state.data.length - 1] &&
             this.setState({ data: [...this.state.data, this.props.taskData] })
 
@@ -27,10 +26,7 @@ export default class task_list extends Component {
             let DATA = this.state.data
             let newData = []
 
-            if (index === DATA.length - 1) {
-                newData = DATA.pop()
-            }
-            else if (DATA.length > 0) {
+            if (DATA.length > 0) {
                 this.state.data.forEach(e => {
                     if (e.id != index) newData.push(e)
                 });

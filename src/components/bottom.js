@@ -7,7 +7,8 @@ export default class Bottom extends Component {
         super()
         this.state = {
             query: "",
-            id: 0
+            id: 0,
+            dIDs: []
         }
     }
     componentDidUpdate() {
