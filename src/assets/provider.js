@@ -26,12 +26,11 @@ export default class DataProvider extends Component {
     render() {
         const { children } = this.props
         const { data } = this.state
-        const { setData, setObject } = this
+        const { setData } = this
 
         const _values = {
             data,
             setData,
-            setObject,
         }
 
         return (

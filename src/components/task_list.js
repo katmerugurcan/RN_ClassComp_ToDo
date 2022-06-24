@@ -17,11 +17,10 @@ export default class task_list extends Component {
                         style={styles.container}
                         alignItems='center'
                         data={data}
-                        // keyExtractor={(item) => item.taskID}
                         renderItem={({ item }) => {
-                            console.log(item.taskID, "flatlist")
+                            // console.log(item.taskID, "flatlist")
                             return (
-                                <Card text={item.taskName} />
+                                <Card text={item.taskName} id={item.taskID} />
                             )
                         }}
                     />)
