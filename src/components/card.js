@@ -3,21 +3,10 @@ import React, { Component } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 export default class Card extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            text: "",
-            id: 0
-        }
+    constructor() {
+        super()
     }
-    componentDidMount() {
-        this.setText(this.props.data.taskName)
-        this.setID(this.props.data.taskId)
-    }
-    componentDidUpdate() { }
-    componentWillUnmount() { console.log("card unmount") }
-    setText = (text) => { this.setState({ text: text }) }
-    setID = (id) => this.setState({ id: id })
+
     render() {
         return (
             <View style={styles.container}>
@@ -25,7 +14,7 @@ export default class Card extends Component {
                 <TouchableOpacity
                     style={styles.delete}
                     onPress={() => {
-                        this.props.deleteFunc(this.state.id)
+                        null
                     }}
                 >
                     <Ionicons name='trash-outline' size={28} color='black' />

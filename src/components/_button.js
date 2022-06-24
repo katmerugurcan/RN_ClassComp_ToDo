@@ -3,18 +3,16 @@ import { StyleSheet, TouchableOpacity } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 export default class Button extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
   }
-  componentDidMount() { }
-  componentDidUpdate() { }
 
   render() {
     return (
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
-          this.props.onPressEvnt()
+          null
         }}
       >
         <Ionicons name='send-sharp' size={32} color='#0088EB' />
@@ -25,7 +23,6 @@ export default class Button extends Component {
 
 const styles = StyleSheet.create({
   button: {
-    // width: '8%',
     height: 45,
     alignItems: 'center',
     justifyContent: 'center',

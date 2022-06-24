@@ -4,12 +4,8 @@ import LinearGradient from 'react-native-linear-gradient'
 import { THEME_COLORS } from '../assets/storage'
 
 export default class Header extends Component {
-    // componentDidUpdate() { console.log("header updated") }
     render() {
         return (
-            // <LinearGradient style={styles.container} colors={THEME_COLORS} >
-            //     <Text style={styles.title}>{this.props.title}</Text>
-            // </LinearGradient>
             <ImageBackground
                 style={styles.container}
                 source={{ uri: 'https://wallpaperaccess.com/full/1399857.jpg' }}
@@ -18,7 +14,7 @@ export default class Header extends Component {
                 borderBottomRightRadius={26}
                 borderBottomLeftRadius={26}
             >
-                <Text style={styles.title}>{this.props.title}</Text>
+                <Text style={styles.title}>ToDo</Text>
             </ImageBackground>
         )
     }

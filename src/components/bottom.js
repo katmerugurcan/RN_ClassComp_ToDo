@@ -1,44 +1,31 @@
 import { Text, StyleSheet, View, TextInput } from 'react-native'
 import React, { Component } from 'react'
 import Button from './_button'
+import { DataContext } from '../assets/provider'
 
 export default class Bottom extends Component {
     constructor() {
         super()
         this.state = {
-            query: "",
-            id: 0
+            taskQuery: ""
         }
     }
-
+    setTaskQuery = (value) => { this.setState({ taskQuery: value }) }
+    static contextType = DataContext
     render() {
-        const setQuery = (value) => { this.setState({ query: value }) }
+        const { data, setData } = this.context
 
-        // const checkID = (id) => {
-        //     let DIDS = this.props.dids
-
-        //     DIDS != [] &&
-        //         DIDS.map((e) => {
-        //             return id === e &&
-        //                 false
-        //         })
-        //     return true
-        // }
-
-        const generateID = () => {
-            let newID = this.state.id
-            // while (checkID(newID))
-            this.setState({ id: newID + 1 })
-            return newID
-        }
-
-        const submitQuery = () => {
-            if (this.state.query) {
-                this.props.setData(generateID(), this.state.query)
-
-                console.log("submit")
-            }
-            setQuery("")
+        const submitData = () => {
+            this.state.taskQuery != "" && data.length != null
+                && (
+                    setData([
+                        ...data,
+                        {
+                            taskID: data.length,
+                            taskName: this.state.taskQuery,
+                        }
+                    ])
+                )
         }
 
         return (
@@ -46,11 +33,11 @@ export default class Bottom extends Component {
                 <TextInput
                     style={styles.input}
                     placeholder='Enter Task'
-                    onSubmitEditing={() => submitQuery()}
-                    value={this.state.query}
-                    onChangeText={(value) => setQuery(value)}
+                    onSubmitEditing={() => submitData}
+                    value={this.state.taskQuery}
+                    onChangeText={(value) => this.setTaskQuery(value)}
                 />
-                <Button onPressEvnt={submitQuery} />
+                <Button />
             </View>
         )
     }
@@ -58,7 +45,6 @@ export default class Bottom extends Component {
 
 const styles = StyleSheet.create({
     bottom_container: {
-        // flex: 0.12,
         color: 'orange',
         minHeight: 55,
         width: '90%',
