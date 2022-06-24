@@ -11,10 +11,11 @@ export default class Card extends Component {
         }
     }
     componentDidMount() {
-        this.setText(this.props.text)
-        this.setID(this.props.cardID)
-        // console.log(this.state, "card")
+        this.setText(this.props.data.taskName)
+        this.setID(this.props.data.taskId)
     }
+    componentDidUpdate() { }
+    componentWillUnmount() { console.log("card unmount") }
     setText = (text) => { this.setState({ text: text }) }
     setID = (id) => this.setState({ id: id })
     render() {
@@ -24,7 +25,6 @@ export default class Card extends Component {
                 <TouchableOpacity
                     style={styles.delete}
                     onPress={() => {
-                        console.log(this.state.id, "touchID")
                         this.props.deleteFunc(this.state.id)
                     }}
                 >

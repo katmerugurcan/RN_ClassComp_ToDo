@@ -1,7 +1,6 @@
 import { StyleSheet, ImageBackground, TouchableOpacity } from 'react-native'
 import React, { Component } from 'react'
 import Header from '../components/header'
-import Bottom from '../components/bottom'
 import TaskList from '../components/task_list'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -9,20 +8,9 @@ export default class HomeScreen extends Component {
     constructor(props) {
         super(props)
         this.backgroundImage = this.props.route.params.image
-        this.state = {
-            text: "",
-            id: 0
-        }
-    }
-    componentDidMount() { }
-    componentDidUpdate() {
-        // console.log(this.state, "app.js")
     }
 
     render() {
-        const setText = (value) => this.setState({ text: value })
-        const setID = (id) => { this.setState({ id: id }) }
-        // const deleteTask = (index) => {this.setState({}) }
         return (
             <ImageBackground
                 source={{ uri: this.backgroundImage }}
@@ -31,8 +19,7 @@ export default class HomeScreen extends Component {
             >
                 <SafeAreaView style={styles.background}>
                     <Header title="ToDo" />
-                    <TaskList taskData={this.state} />
-                    <Bottom setData={setText} setID={setID} />
+                    <TaskList />
                 </SafeAreaView>
             </ImageBackground>
         )

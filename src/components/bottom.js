@@ -10,22 +10,33 @@ export default class Bottom extends Component {
             id: 0
         }
     }
-    componentDidUpdate() {
-        // console.log(this.state.query)
-    }
 
     render() {
         const setQuery = (value) => { this.setState({ query: value }) }
+
+        // const checkID = (id) => {
+        //     let DIDS = this.props.dids
+
+        //     DIDS != [] &&
+        //         DIDS.map((e) => {
+        //             return id === e &&
+        //                 false
+        //         })
+        //     return true
+        // }
+
         const generateID = () => {
-            this.setState({ id: this.state.id + 1 })
-            return this.state.id
+            let newID = this.state.id
+            // while (checkID(newID))
+            this.setState({ id: newID + 1 })
+            return newID
         }
 
         const submitQuery = () => {
-            this.state.query &&
-                this.props.setID(generateID())
             if (this.state.query) {
-                this.props.setData(this.state.query)
+                this.props.setData(generateID(), this.state.query)
+
+                console.log("submit")
             }
             setQuery("")
         }

@@ -1,59 +1,56 @@
 import { Text, View, StyleSheet, FlatList } from 'react-native'
 import React, { Component } from 'react'
 import Card from './card'
+import Bottom from './bottom'
 
 export default class task_list extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.state = {
             data: [],
+            newData: [],
         }
     }
-    componentDidMount() { }
+    componentDidMount() {
+    }
     componentDidUpdate() {
-        // console.log(this.state.data, "tasklist")
-        this.props.taskData != this.state.data[this.state.data.length - 1] &&
-            this.setState({ data: [...this.state.data, this.props.taskData] })
-
+        console.log(this.state.data, "updated")
     }
 
+
     render() {
-        const setData = (i) => {
-            this.setState({ data: deleteTask(i) })
-            console.log(this.state.data)
+        const setData = (taskID, query) => {
+            this.setState({ data: [...this.state.data, { taskId: taskID, taskName: query }] })
         }
 
         const deleteTask = (index) => {
-            let DATA = this.state.data
-            let newData = []
+            console.log("setState")
+            this.state.data.forEach(e => {
+                if (e.taskId != index) this.state.newData.push(e)
+            });
 
-            if (index === DATA.length - 1) {
-                newData = DATA.pop()
-            }
-            else if (DATA.length > 0) {
-                this.state.data.forEach(e => {
-                    if (e.id != index) newData.push(e)
-                });
-            }
-            else if (DATA.length === 0) {
-                newData = []
-            }
-            return newData
+            this.state.data = this.state.newData
+            // this.setState({ data: this.state.newData })
+            this.state.newData = []
+            this.setState({})
         }
 
         return (
-            <FlatList
-                style={styles.container}
-                alignItems='center'
-                data={this.state.data}
-                renderItem={({ item }) => {
-                    // console.log(item, "flatlist")
-                    return (
-                        this.state.data.length != 0 &&
-                        <Card text={item.text} cardID={item.id} deleteFunc={setData} />
-                    )
-                }}
-            />
+            <View style={styles.body}>
+                <FlatList
+                    style={styles.container}
+                    alignItems='center'
+                    data={this.state.data}
+                    renderItem={({ item }) => {
+                        console.log(item.taskId, "listRender")
+                        return (
+                            <Card data={item} deleteFunc={deleteTask} />
+                        )
+                    }}
+                />
+                {/* <View /> */}
+                <Bottom setData={setData} />
+            </View>
         )
     }
 }
@@ -63,4 +60,10 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
     },
+    body: {
+        flex: 1,
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    }
 })
