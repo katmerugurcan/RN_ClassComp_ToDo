@@ -16,16 +16,19 @@ export default class Bottom extends Component {
         const { data, setData } = this.context
 
         const submitData = () => {
-            this.state.taskQuery != "" && data.length != null
-                && (
-                    setData([
-                        ...data,
-                        {
-                            taskID: data.length,
-                            taskName: this.state.taskQuery,
-                        }
-                    ])
-                )
+            this.state.taskQuery
+                && setData(generateID(), this.state.taskQuery)
+            this.setTaskQuery("")
+        }
+
+        const generateID = () => {
+            let id = 0
+            data.map((e) => {
+                while (id === e.taskID) {
+                    id += 1
+                }
+            })
+            return id
         }
 
         return (
@@ -33,7 +36,7 @@ export default class Bottom extends Component {
                 <TextInput
                     style={styles.input}
                     placeholder='Enter Task'
-                    onSubmitEditing={() => submitData}
+                    onSubmitEditing={() => submitData()}
                     value={this.state.taskQuery}
                     onChangeText={(value) => this.setTaskQuery(value)}
                 />

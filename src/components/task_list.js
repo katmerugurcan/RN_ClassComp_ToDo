@@ -7,7 +7,7 @@ import { DataContext } from '../assets/provider'
 export default class task_list extends Component {
     static contextType = DataContext
     render() {
-        const { data, setData } = this.context
+        const { data } = this.context
 
         return (
             <View style={styles.body}>
@@ -17,10 +17,11 @@ export default class task_list extends Component {
                         style={styles.container}
                         alignItems='center'
                         data={data}
+                        // keyExtractor={(item) => item.taskID}
                         renderItem={({ item }) => {
-                            console.log(item.taskId, "listRender")
+                            console.log(item.taskID, "flatlist")
                             return (
-                                <Card />
+                                <Card text={item.taskName} />
                             )
                         }}
                     />)

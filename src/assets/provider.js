@@ -7,17 +7,31 @@ export default class DataProvider extends Component {
     state = {
         data: []
     }
+    componentDidUpdate() {
+        console.log(this.state.data)
+    }
 
-    setData = (value) => { this.setState({ data: value }) }
+    setData = (id, task) => {
+        this.setState({
+            data: [
+                ...this.state.data,
+                {
+                    taskID: id,
+                    taskName: task
+                }
+            ]
+        })
+    }
 
     render() {
         const { children } = this.props
         const { data } = this.state
-        const { setData } = this
+        const { setData, setObject } = this
 
         const _values = {
             data,
-            setData
+            setData,
+            setObject,
         }
 
         return (

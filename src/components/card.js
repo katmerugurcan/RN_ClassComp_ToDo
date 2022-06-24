@@ -3,14 +3,10 @@ import React, { Component } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 export default class Card extends Component {
-    constructor() {
-        super()
-    }
-
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.text_style}>{this.state.text}</Text>
+                <Text style={styles.text_style}>{this.props.text}</Text>
                 <TouchableOpacity
                     style={styles.delete}
                     onPress={() => {
