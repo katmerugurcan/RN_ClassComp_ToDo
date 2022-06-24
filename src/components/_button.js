@@ -3,8 +3,8 @@ import { StyleSheet, TouchableOpacity } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 export default class Button extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
   }
 
   render() {
@@ -12,7 +12,7 @@ export default class Button extends Component {
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
-          null
+          this.props.addTask()
         }}
       >
         <Ionicons name='send-sharp' size={32} color='#0088EB' />

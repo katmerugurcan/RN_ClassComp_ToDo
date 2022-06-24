@@ -10,7 +10,9 @@ export default class Bottom extends Component {
             taskQuery: ""
         }
     }
+
     setTaskQuery = (value) => { this.setState({ taskQuery: value }) }
+
     static contextType = DataContext
     render() {
         const { data, setData } = this.context
@@ -40,7 +42,7 @@ export default class Bottom extends Component {
                     value={this.state.taskQuery}
                     onChangeText={(value) => this.setTaskQuery(value)}
                 />
-                <Button />
+                <Button addTask={submitData} />
             </View>
         )
     }

@@ -5,10 +5,7 @@ export const DataContext = createContext()
 
 export default class DataProvider extends Component {
     state = {
-        data: []
-    }
-    componentDidUpdate() {
-        console.log(this.state.data)
+        data: [],
     }
 
     setData = (id, task) => {
@@ -23,14 +20,24 @@ export default class DataProvider extends Component {
         })
     }
 
+    dropTask = (index) => {
+        let d1 = []
+        this.state.data.map((e) => {
+            e.taskID != index
+                && d1.push(e)
+        })
+        this.setState({ data: d1 })
+    }
+
     render() {
         const { children } = this.props
         const { data } = this.state
-        const { setData } = this
+        const { setData, dropTask } = this
 
         const _values = {
             data,
             setData,
+            dropTask,
         }
 
         return (

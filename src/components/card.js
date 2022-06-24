@@ -1,6 +1,7 @@
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
 import React, { Component } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import { DataContext } from '../assets/provider'
 
 export default class Card extends Component {
     constructor(props) {
@@ -10,8 +11,11 @@ export default class Card extends Component {
             numberOfLines: 4
         }
     }
-
+    componentDidMount() { console.log(this.props.id, "cdm") }
+    static contextType = DataContext
     render() {
+        const { dropTask } = this.context
+
         return (
             <TouchableOpacity
                 style={
@@ -37,7 +41,7 @@ export default class Card extends Component {
                 <TouchableOpacity
                     style={styles.delete}
                     onPress={() => {
-                        console.log(this.props, "thresh")
+                        dropTask(this.props.id)
                     }}
                 >
                     <Ionicons name='trash-outline' size={28} color='black' />
