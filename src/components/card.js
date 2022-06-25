@@ -1,4 +1,4 @@
-import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
+import { Text, StyleSheet, View, TouchableOpacity, Alert } from 'react-native'
 import React, { Component } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { DataContext } from '../assets/provider'
@@ -8,13 +8,30 @@ export default class Card extends Component {
         super(props)
         this.state = {
             isPressed: false,
-            numberOfLines: 4
         }
     }
     componentDidMount() { console.log(this.props.id, "cdm") }
     static contextType = DataContext
     render() {
         const { dropTask } = this.context
+
+        const createTwoButtonAlert = (textID, text) => {
+            Alert.alert(
+                "Bu not silinsin mi?",
+                `"${text}" id: ${textID}`,
+                [
+                    {
+                        text: "Cancel",
+                        onPress: () => null,
+                        style: "cancel"
+                    },
+                    {
+                        text: "OK",
+                        onPress: () => dropTask(textID)
+                    }
+                ]
+            )
+        }
 
         return (
             <TouchableOpacity
@@ -41,7 +58,7 @@ export default class Card extends Component {
                 <TouchableOpacity
                     style={styles.delete}
                     onPress={() => {
-                        dropTask(this.props.id)
+                        createTwoButtonAlert(this.props.id, this.props.text)
                     }}
                 >
                     <Ionicons name='trash-outline' size={28} color='black' />
@@ -55,22 +72,25 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         margin: 10,
-        width: 380,
+        width: '70%',
         minHeight: 50,
         maxHeight: 150,
         borderRadius: 12,
         elevation: 8,
         backgroundColor: 'white',
+        alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'space-between',
     },
     pressed: {
         flexDirection: 'row',
         margin: 10,
-        width: 380,
+        minHeight: 50,
+        width: '70%',
         borderRadius: 12,
         elevation: 8,
         backgroundColor: 'white',
+        alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'space-between',
     },
